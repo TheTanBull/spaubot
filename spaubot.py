@@ -14,7 +14,19 @@
 # - Display user commands
 # - Squanch.
 # - Functionize
-
+##########################################
+# Finding data when searching by track
+# sp.search(search_string, type='track')
+#
+# artist:           results['tracks']['items'][0]['album']['artists'][0]['name'] #artist
+# album:            results['tracks']['items'][0]['album']['name'] #album
+# track_name:       results['tracks']['items'][0]['name'] #track name
+# uri:              results['tracks']['items'][0]['uri'] #uri
+# id:               results['tracks']['items'][0]['id'] #id
+#
+# --iterate through results -- 
+# for item in results['tracks']['items']:
+#     print(f"{item['album']['artists'][0]['name']} - {item['name']}")
 
 
 import sys
@@ -50,7 +62,7 @@ def on_message(room, event):
                 if cmd == "!help":
                     room.send_text("Here's a list of commands!") #needs implemented
                 elif cmd == "!add":
-                    print("You want to add a track!") #TO BE IMPLEMENTED
+                    print("You want to add a track!")
                     if len(msg) > 5:
                         results = sp.search(msg[5:], type='track')
                         if results['tracks']['items']:

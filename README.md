@@ -31,10 +31,20 @@ There are several steps you will need to take in order to work on development of
     spot_redirect_uri: "http://localhost/"
     ```
 
-5. Run the spaubot script locally to obtain your authorization token. This will open up a web browser and direct you to login to Spotify. This must be done anytime you alter the access scope within the script--Otherwise a refresh token will be saved in a dotfile. 
+5. Run the spaubot.py script locally to obtain your authorization token. This will open up a web browser and direct you to login to Spotify. This must be done anytime you alter the access scope within the script--Otherwise a refresh token will be saved in a dotfile. 
 
 
 
+## Usage
+The original intended usage of this bot was to automate playlist additions  suggested by a collaborative group. This eliminates the need to become a Spotify user in order to add song suggestions to a playlist.
+
+The bot can be prompted by a series of chat commands.
+
+  * `!Add [ArtistName] - [SongName]` => This will search the Spotify API for the best match and add this song to the current playlist. If no results are found, the bot will notify the chat.
+
+  * `!Current`  => Returns the song that is currently playing.
+  
+## To Be Added
 
 
 #### References
