@@ -68,8 +68,6 @@ def on_message(room, event):
                         if results['tracks']['items']:
                             track_ids = []
                             track_ids.append(results['tracks']['items'][0]['id'])
-                            # for item in results['tracks']['items']:
-                            #     print(f"{item['album']['artists'][0]['name']} - {item['name']}")
                             try:
                                 tracks_added = sp.user_playlist_add_tracks(user_config['spot_username'], user_config['spot_playlist_id'], track_ids)
                                 room.send_text(f"{results['tracks']['items'][0]['album']['artists'][0]['name']} - {results['tracks']['items'][0]['name']} added to the playlist!")
@@ -94,17 +92,10 @@ def on_message(room, event):
                     print("You want a list of songs on the current playlist?") #TO BE IMPLEMENTED
             elif msg[0] == '$':
                 room.send_text("You've got my attentions.")
-                # scope = 'playlist-modify-public user-read-currently-playing'
-                # token = util.prompt_for_user_token(user_config['spot_username'],scope,user_config['spot_client_id'],user_config['spot_client_secret'],user_config['spot_redirect_uri'])
-
-                # if token:
-                #     sp = spotipy.Spotify(auth=token)
                 results = sp.search(msg[1:], type='track')
                 if results['tracks']['items']:
                     track_ids = []
                     track_ids.append(results['tracks']['items'][0]['id'])
-                    # for item in results['tracks']['items']:
-                    #     print(f"{item['album']['artists'][0]['name']} - {item['name']}")
                     try:
                         tracks_added = sp.user_playlist_add_tracks(user_config['spot_username'], user_config['spot_playlist_id'], track_ids)
                         room.send_text(f"{results['tracks']['items'][0]['name']} added to the playlist!")
@@ -112,8 +103,6 @@ def on_message(room, event):
                         room.send_text(f"{sender} Unable to add {msg[1:]}!") 
                 else:
                     room.send_text(f"{sender} There were no results for {msg[1:]}. Please verify the spelling is correct.")
-                # else:
-                #     print ("Can't get token for", user_config['spot_username'])
     else:
         print(event['type'])
 
